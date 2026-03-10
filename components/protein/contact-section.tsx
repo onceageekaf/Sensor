@@ -60,10 +60,10 @@ const inventors = [
 
 const pressArticles = [
   {
-    title: "Novel transport system enables efficient production of designer proteins",
+    title: "A Trojan horse for artificial amino acids",
     source: "ETH Zurich News",
-    date: "October 2025",
-    link: "https://ethz.ch/en/news-and-events/eth-news.html",
+    date: "December 2025",
+    link: "https://ethz.ch/en/news-and-events/eth-news/news/2025/12/a-trojan-horse-for-artificial-amino-acids.html",
   },
 ]
 

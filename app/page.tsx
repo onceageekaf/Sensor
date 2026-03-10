@@ -2,8 +2,21 @@
 
 import React, { useEffect, useRef, useState, useMemo } from "react"
 import Link from "next/link"
-import { ArrowRight, Search, X, Atom, ShieldCheck, Dna, FlaskConical, Microscope, Cpu, Pill, Leaf, Zap, Factory } from "lucide-react"
+import { ArrowRight, Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { 
+  SensorIcon, 
+  NanotubeIcon, 
+  AntibodyIcon, 
+  ReceptorIcon, 
+  DNAIcon, 
+  ProteinIcon,
+  BacteriaIcon,
+  MoleculeIcon,
+  CellIcon,
+  EnzymeIcon,
+  RibosomeIcon
+} from "@/components/icons/bioicons"
 
 // Technology data - easily scalable to hundreds of entries
 const technologies = [
@@ -16,7 +29,7 @@ const technologies = [
     published: "Advanced Science, 2024",
     trl: 4,
     tags: ["Sensing", "Nanotechnology", "Environmental"],
-    icon: Atom,
+    icon: SensorIcon,
     color: "teal",
   },
   {
@@ -28,7 +41,7 @@ const technologies = [
     published: "Cell, 2020",
     trl: 6,
     tags: ["Oncology", "Immunotherapy", "Drug Repurposing"],
-    icon: ShieldCheck,
+    icon: AntibodyIcon,
     color: "violet",
   },
   {
@@ -40,7 +53,7 @@ const technologies = [
     published: "Nature, 2025",
     trl: 5,
     tags: ["Biotechnology", "Protein Engineering", "Synthetic Biology"],
-    icon: Dna,
+    icon: RibosomeIcon,
     color: "emerald",
   },
 ]
@@ -48,17 +61,17 @@ const technologies = [
 // Extract all unique tags for filtering
 const allTags = Array.from(new Set(technologies.flatMap(t => t.tags))).sort()
 
-// Tag category icons
-const tagIcons: Record<string, React.ElementType> = {
-  "Sensing": Atom,
-  "Nanotechnology": Cpu,
-  "Environmental": Leaf,
-  "Oncology": Pill,
-  "Immunotherapy": ShieldCheck,
-  "Drug Repurposing": FlaskConical,
-  "Biotechnology": Dna,
-  "Protein Engineering": Factory,
-  "Synthetic Biology": Microscope,
+// Tag icons mapping - using bioicons for scientific tags
+const tagIconsMap: Record<string, React.FC<{ className?: string; size?: number; color?: string }>> = {
+  "Sensing": SensorIcon,
+  "Nanotechnology": NanotubeIcon,
+  "Environmental": MoleculeIcon,
+  "Oncology": CellIcon,
+  "Immunotherapy": AntibodyIcon,
+  "Drug Repurposing": EnzymeIcon,
+  "Biotechnology": DNAIcon,
+  "Protein Engineering": ProteinIcon,
+  "Synthetic Biology": BacteriaIcon,
 }
 
 // Color mapping for tags
@@ -75,9 +88,21 @@ const tagColors: Record<string, string> = {
 }
 
 const cardColors: Record<string, string> = {
-  teal: "border-teal-100 hover:border-teal-200 bg-gradient-to-br from-white to-teal-50/30",
-  violet: "border-violet-100 hover:border-violet-200 bg-gradient-to-br from-white to-violet-50/30",
-  emerald: "border-emerald-100 hover:border-emerald-200 bg-gradient-to-br from-white to-emerald-50/30",
+  teal: "border-teal-100 hover:border-teal-300",
+  violet: "border-violet-100 hover:border-violet-300",
+  emerald: "border-emerald-100 hover:border-emerald-300",
+}
+
+const iconBgColors: Record<string, string> = {
+  teal: "bg-teal-50",
+  violet: "bg-violet-50",
+  emerald: "bg-emerald-50",
+}
+
+const iconColors: Record<string, string> = {
+  teal: "#0d9488",
+  violet: "#7c3aed",
+  emerald: "#059669",
 }
 
 const accentColors: Record<string, string> = {
@@ -155,7 +180,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-sm">
-              <span className="text-white text-xs font-bold">TT</span>
+              <DNAIcon size={18} color="white" />
             </div>
             <span className="text-slate-900 font-semibold text-lg">Tech Transfer</span>
           </div>
@@ -208,7 +233,7 @@ export default function HomePage() {
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               {allTags.map(tag => {
                 const isSelected = selectedTags.includes(tag)
-                const TagIcon = tagIcons[tag] || FlaskConical
+                const TagIcon = tagIconsMap[tag] || MoleculeIcon
                 return (
                   <button
                     key={tag}
@@ -220,7 +245,7 @@ export default function HomePage() {
                         : tagColors[tag] || "bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300"
                     )}
                   >
-                    <TagIcon className="w-3 h-3" />
+                    <TagIcon size={12} color={isSelected ? "white" : undefined} />
                     {tag}
                   </button>
                 )
@@ -262,73 +287,78 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredTechnologies.map((tech, i) => (
-                <FadeIn key={tech.id} delay={i * 75}>
-                  <Link href={tech.href} className="group block h-full">
-                    <div className={cn(
-                      "relative rounded-2xl border p-6 h-full transition-all duration-300 bg-white",
-                      "hover:shadow-lg hover:-translate-y-1",
-                      cardColors[tech.color]
-                    )}>
-                      {/* Header */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className={cn(
-                          "w-10 h-10 rounded-xl flex items-center justify-center",
-                          tech.color === "teal" && "bg-teal-100 text-teal-600",
-                          tech.color === "violet" && "bg-violet-100 text-violet-600",
-                          tech.color === "emerald" && "bg-emerald-100 text-emerald-600"
-                        )}>
-                          <tech.icon className="w-5 h-5" />
+              {filteredTechnologies.map((tech, i) => {
+                const TechIcon = tech.icon
+                return (
+                  <FadeIn key={tech.id} delay={i * 75}>
+                    <Link href={tech.href} className="group block h-full">
+                      <div className={cn(
+                        "relative rounded-2xl border p-6 h-full transition-all duration-300 bg-white",
+                        "hover:shadow-lg hover:-translate-y-1",
+                        cardColors[tech.color]
+                      )}>
+                        {/* Header */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div className={cn(
+                            "w-12 h-12 rounded-xl flex items-center justify-center",
+                            iconBgColors[tech.color]
+                          )}>
+                            <TechIcon size={28} color={iconColors[tech.color]} animated />
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">TRL</span>
+                            <span className={cn(
+                              "text-sm font-bold",
+                              accentColors[tech.color]
+                            )}>{tech.trl}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] text-slate-400 uppercase tracking-wider">TRL</span>
+
+                        {/* Title */}
+                        <h2 className="text-lg font-bold text-slate-900 leading-snug mb-2 line-clamp-2">
+                          {tech.title}
+                        </h2>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
+                          {tech.subtitle}
+                        </p>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {tech.tags.slice(0, 3).map(tag => {
+                            const TagIcon = tagIconsMap[tag] || MoleculeIcon
+                            return (
+                              <span
+                                key={tag}
+                                className={cn(
+                                  "inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium border",
+                                  tagColors[tag] || "bg-slate-50 text-slate-600 border-slate-200"
+                                )}
+                              >
+                                <TagIcon size={10} />
+                                {tag}
+                              </span>
+                            )
+                          })}
+                        </div>
+
+                        {/* Footer */}
+                        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                          <div className="flex flex-col">
+                            <span className="text-xs text-slate-400">{tech.institution}</span>
+                            <span className="text-[10px] text-slate-300">{tech.published}</span>
+                          </div>
                           <span className={cn(
-                            "text-sm font-bold",
+                            "inline-flex items-center gap-1 text-sm font-medium transition-all group-hover:gap-2",
                             accentColors[tech.color]
-                          )}>{tech.trl}</span>
-                        </div>
-                      </div>
-
-                      {/* Title */}
-                      <h2 className="text-lg font-bold text-slate-900 leading-snug mb-2 line-clamp-2">
-                        {tech.title}
-                      </h2>
-                      <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
-                        {tech.subtitle}
-                      </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {tech.tags.slice(0, 3).map(tag => (
-                          <span
-                            key={tag}
-                            className={cn(
-                              "px-2 py-0.5 rounded-full text-[10px] font-medium border",
-                              tagColors[tag] || "bg-slate-50 text-slate-600 border-slate-200"
-                            )}
-                          >
-                            {tag}
+                          )}>
+                            <ArrowRight className="w-4 h-4" />
                           </span>
-                        ))}
-                      </div>
-
-                      {/* Footer */}
-                      <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                        <div className="flex flex-col">
-                          <span className="text-xs text-slate-400">{tech.institution}</span>
-                          <span className="text-[10px] text-slate-300">{tech.published}</span>
                         </div>
-                        <span className={cn(
-                          "inline-flex items-center gap-1 text-sm font-medium transition-all group-hover:gap-2",
-                          accentColors[tech.color]
-                        )}>
-                          <ArrowRight className="w-4 h-4" />
-                        </span>
                       </div>
-                    </div>
-                  </Link>
-                </FadeIn>
-              ))}
+                    </Link>
+                  </FadeIn>
+                )
+              })}
             </div>
           )}
         </div>
