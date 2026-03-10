@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import { SiteHeader } from '@/components/site-header'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { Figure1Workflow } from '@/components/nanoparticle/figures/figure-1-workflow'
+import { Figure2Shapes } from '@/components/nanoparticle/figures/figure-2-shapes'
+import { Figure3Detection } from '@/components/nanoparticle/figures/figure-3-detection'
+import { Figure4Data } from '@/components/nanoparticle/figures/figure-4-data'
+import { Figure5Applications } from '@/components/nanoparticle/figures/figure-5-applications'
 
 export default function NanoparticleDeepDivePage() {
   return (
@@ -24,110 +29,60 @@ export default function NanoparticleDeepDivePage() {
         </div>
       </div>
 
-      <div className="py-24 px-6">
+      <div className="py-16 px-6 bg-gradient-to-b from-violet-50 to-white">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">SP-ICP-MS: Technical Deep Dive</h1>
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">SP-ICP-MS Technical Deep Dive</h1>
           <p className="text-lg text-slate-600 mb-12">
-            Comprehensive explanation of single-particle inductively-coupled plasma mass spectrometry for nanoparticle characterization with animated figures from ACS Nano 2022.
+            Comprehensive explanation of single-particle inductively-coupled plasma mass spectrometry for high-resolution nanoparticle characterization. All figures are animated to illustrate key concepts from the ACS Nano 2022 publication.
           </p>
 
-          <div className="space-y-8">
-            <div className="bg-violet-50 rounded-xl p-8 border border-violet-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Figure 1: Measurement Workflow</h2>
-              <svg viewBox="0 0 800 300" className="w-full mb-6">
-                {/* Nebulization */}
-                <g>
-                  <circle cx="100" cy="150" r="40" fill="#ede9fe" stroke="#8b5cf6" strokeWidth="2"/>
-                  <text x="100" y="160" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="bold">Sample</text>
-                  <text x="100" y="210" textAnchor="middle" fontSize="11" fill="#64748b">Nebulization</text>
-                </g>
-
-                {/* Arrow */}
-                <path d="M 150 150 L 220 150" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-
-                {/* Plasma */}
-                <g>
-                  <rect x="220" y="100" width="80" height="100" fill="#c084fc" stroke="#8b5cf6" strokeWidth="2" rx="4"/>
-                  <text x="260" y="160" textAnchor="middle" fontSize="12" fill="white" fontWeight="bold">Plasma</text>
-                  <text x="260" y="210" textAnchor="middle" fontSize="11" fill="#64748b">Ionization</text>
-                </g>
-
-                {/* Arrow */}
-                <path d="M 310 150 L 380 150" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-
-                {/* Mass Analyzer */}
-                <g>
-                  <path d="M 380 120 L 450 150 L 380 180 Z" fill="#a78bfa" stroke="#8b5cf6" strokeWidth="2"/>
-                  <text x="410" y="160" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">M/z</text>
-                  <text x="410" y="210" textAnchor="middle" fontSize="11" fill="#64748b">Analysis</text>
-                </g>
-
-                {/* Arrow */}
-                <path d="M 450 150 L 520 150" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-
-                {/* Detector */}
-                <g>
-                  <rect x="520" y="100" width="80" height="100" fill="#d8b4fe" stroke="#8b5cf6" strokeWidth="2" rx="4"/>
-                  <text x="560" y="155" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="bold">Ion</text>
-                  <text x="560" y="170" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="bold">Plumes</text>
-                  <text x="560" y="210" textAnchor="middle" fontSize="11" fill="#64748b">Detection</text>
-                </g>
-
-                {/* Arrow */}
-                <path d="M 610 150 L 680 150" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
-
-                {/* Data */}
-                <g>
-                  <rect x="680" y="100" width="80" height="100" fill="#ede9fe" stroke="#8b5cf6" strokeWidth="2" rx="4"/>
-                  <text x="720" y="155" textAnchor="middle" fontSize="11" fill="#1e293b" fontWeight="bold">Size</text>
-                  <text x="720" y="170" textAnchor="middle" fontSize="11" fill="#1e293b" fontWeight="bold">Dist.</text>
-                  <text x="720" y="210" textAnchor="middle" fontSize="11" fill="#64748b">Output</text>
-                </g>
-
-                <defs>
-                  <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                    <polygon points="0 0, 10 3, 0 6" fill="#8b5cf6"/>
-                  </marker>
-                </defs>
-              </svg>
-              <p className="text-slate-600">
-                Individual nanoparticles are nebulized and enter the plasma torch where they are atomized and ionized. The resulting ion plumes are registered by the mass analyzer, with each particle generating a discrete signal (event). This contrasts with dissolved ions which produce constant background signal.
-              </p>
-            </div>
+          <div className="space-y-12">
+            <Figure1Workflow />
+            <Figure2Shapes />
+            <Figure3Detection />
+            <Figure4Data />
+            <Figure5Applications />
 
             <div className="bg-slate-50 rounded-xl p-8 border border-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Figure 2: Particle Shape Modeling</h2>
-              <p className="text-slate-600 mb-6">
-                SP-ICP-MS can accommodate non-spherical particle geometries. The method determines shape-specific volume relationships to convert ion signal intensity into accurate size measurements for cubes, octahedra, tetrahedra, and other morphologies.
-              </p>
-              <div className="flex justify-around items-center py-8 bg-white rounded-lg">
-                {[
-                  { name: 'Sphere', equ: 'V = 4/3πr³' },
-                  { name: 'Cube', equ: 'V = a³' },
-                  { name: 'Octahedra', equ: 'V = √2/3 a³' },
-                  { name: 'Tetrahedra', equ: 'V = a³/6√2' },
-                ].map((shape, i) => (
-                  <div key={i} className="text-center">
-                    <div className="text-sm font-semibold text-slate-900 mb-2">{shape.name}</div>
-                    <div className="text-xs text-slate-500 font-mono">{shape.equ}</div>
-                  </div>
-                ))}
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Advantages Over Bulk Methods</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 bg-white rounded-lg border border-slate-200">
+                  <p className="text-sm font-semibold text-slate-900 mb-2">Traditional ICP-MS</p>
+                  <ul className="text-xs text-slate-600 space-y-1">
+                    <li>• Ensemble average only</li>
+                    <li>• Loses information</li>
+                    <li>• Limited to soluble samples</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-white rounded-lg border border-slate-200">
+                  <p className="text-sm font-semibold text-slate-900 mb-2">SP-ICP-MS</p>
+                  <ul className="text-xs text-slate-600 space-y-1">
+                    <li>• Individual particle data</li>
+                    <li>• Distribution information</li>
+                    <li>• Direct particle analysis</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-white rounded-lg border border-slate-200">
+                  <p className="text-sm font-semibold text-slate-900 mb-2">Electron Microscopy</p>
+                  <ul className="text-xs text-slate-600 space-y-1">
+                    <li>• Imaging only</li>
+                    <li>• Limited sampling (100s)</li>
+                    <li>• Time-consuming analysis</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             <div className="bg-slate-50 rounded-xl p-8 border border-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Figure 3: Composition Distribution</h2>
-              <p className="text-slate-600">
-                For multimetallic nanoparticles like CuPd and CuPdAg alloys, SP-ICP-MS detects individual particles' elemental composition with single-particle resolution. This enables quantification of composition distributions within the ensemble—critical for understanding alloy formation kinetics and catalyst performance.
-              </p>
-            </div>
-
-            <div className="bg-slate-50 rounded-xl p-8 border border-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Key References</h2>
-              <ul className="space-y-2 text-slate-600">
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">References</h2>
+              <ul className="space-y-3 text-slate-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-violet-600 mt-1">•</span>
-                  <span>Koolen, C. D., et al. "High-throughput sizing, counting, and elemental analysis of anisotropic multimetallic nanoparticles." ACS Nano 16.8 (2022): 11968-11978.</span>
+                  <span className="text-violet-600 font-bold mt-1">1.</span>
+                  <span>Koolen, C. D., et al. "High-throughput sizing, counting, and elemental analysis of anisotropic multimetallic nanoparticles." <em>ACS Nano</em> 16.8 (2022): 11968-11978.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-violet-600 font-bold mt-1">2.</span>
+                  <span>Mateus, J. N., et al. "Method for in-line quality control of engineered inorganic nanoparticle production processes." EPFL Tech Offer 2024.</span>
                 </li>
               </ul>
             </div>
