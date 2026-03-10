@@ -3,21 +3,23 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ExternalLink, Download } from "lucide-react"
-import { Figure1Concept } from "@/components/figures/figure-1-concept"
-import { Figure2Fabrication } from "@/components/figures/figure-2-fabrication"
-import { Figure3Sensing } from "@/components/figures/figure-3-sensing"
-import { Figure4Sensitivity } from "@/components/figures/figure-4-sensitivity"
-import { Figure5Selectivity } from "@/components/figures/figure-5-selectivity"
-import { Figure6Ambient } from "@/components/figures/figure-6-ambient"
-import { EnergyDiagram } from "@/components/figures/energy-diagram"
+import { SiteHeader } from "@/components/site-header"
+import { Figure1Concept } from "@/components/oxygen-sensor/figures/figure-1-concept"
+import { Figure2Fabrication } from "@/components/oxygen-sensor/figures/figure-2-fabrication"
+import { Figure3Sensing } from "@/components/oxygen-sensor/figures/figure-3-sensing"
+import { Figure4Sensitivity } from "@/components/oxygen-sensor/figures/figure-4-sensitivity"
+import { Figure5Selectivity } from "@/components/oxygen-sensor/figures/figure-5-selectivity"
+import { Figure6Ambient } from "@/components/oxygen-sensor/figures/figure-6-ambient"
+import { EnergyDiagram } from "@/components/oxygen-sensor/figures/energy-diagram"
 
 export default function TechnicalDetailsPage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+      <SiteHeader />
+      {/* Sub-header */}
+      <div className="py-3 px-6 border-b border-slate-100 bg-slate-50/50">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Link href="/oxygen-sensor" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm font-medium">Back to overview</span>
           </Link>
@@ -31,7 +33,7 @@ export default function TechnicalDetailsPage() {
             <ExternalLink className="w-3 h-3" />
           </a>
         </div>
-      </header>
+      </div>
 
       {/* Hero */}
       <section className="py-16 md:py-24 border-b border-slate-100">

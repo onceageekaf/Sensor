@@ -4,16 +4,20 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-import { Geist, Geist_Mono, Geist as V0_Font_Geist, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
+import { Geist, Geist_Mono, Source_Serif_4, Geist as V0_Font_Geist, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
 
 // Initialize fonts
 const _geist = V0_Font_Geist({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
 const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
 const _sourceSerif_4 = V0_Font_Source_Serif_4({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"] })
 
+const geistSans = Geist({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
+const geistMono = Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
+const sourceSerif = Source_Serif_4({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"] })
+
 export const metadata: Metadata = {
-  title: 'Dye-Sensitized Oxygen Sensor | ETH Zürich',
-  description: 'A high-performance chemiresistive sensor for rapid, selective oxygen detection under visible light. Low power, humidity tolerant, and ppb-level sensitivity.',
+  title: 'Tech Transfer | Breakthrough Technologies for Licensing',
+  description: 'Explore innovative technologies from world-leading research institutions available for commercialization and licensing.',
   generator: 'v0.app',
   icons: {
     icon: [
