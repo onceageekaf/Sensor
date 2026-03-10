@@ -5,23 +5,27 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { Figure1Tripeptide } from "@/components/protein/figures/figure-1-tripeptide"
+import { Figure2Transporter } from "@/components/protein/figures/figure-2-transporter"
+import { Figure3Toolbox } from "@/components/protein/figures/figure-3-toolbox"
+import { Figure4Evolution } from "@/components/protein/figures/figure-4-evolution"
+import { Figure5Dual } from "@/components/protein/figures/figure-5-dual"
 
-// Expandable figure section component
-function FigureSection({ 
-  number, 
-  title, 
-  children, 
-  defaultOpen = false 
-}: { 
+function FigureSection({
+  number,
+  title,
+  children,
+  defaultOpen = false,
+}: {
   number: string
   title: string
   children: React.ReactNode
-  defaultOpen?: boolean 
+  defaultOpen?: boolean
 }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden mb-6">
+    <div className="border border-slate-200 rounded-2xl overflow-hidden mb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-6 bg-slate-50 hover:bg-slate-100 transition-colors text-left"
@@ -30,10 +34,13 @@ function FigureSection({
           <span className="text-sm text-emerald-600 font-medium">Figure {number}</span>
           <h3 className="text-lg font-bold text-slate-900">{title}</h3>
         </div>
-        {isOpen ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+        {isOpen
+          ? <ChevronUp className="w-5 h-5 text-slate-400 shrink-0" />
+          : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+        }
       </button>
       {isOpen && (
-        <div className="p-6 bg-white">
+        <div className="p-6 bg-white border-t border-slate-100">
           {children}
         </div>
       )}
@@ -45,15 +52,18 @@ export default function ProteinDeepDivePage() {
   return (
     <main className="min-h-screen bg-white">
       <SiteHeader />
-      
+
       {/* Sub-header */}
       <div className="py-3 px-6 border-b border-slate-100 bg-slate-50/50">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link href="/protein-production" className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+          <Link
+            href="/protein-production"
+            className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors"
+          >
             <ArrowLeft className="w-4 h-4" />
             Back to overview
           </Link>
-          <a 
+          <a
             href="https://doi.org/10.1038/s41586-025-09576-w"
             target="_blank"
             rel="noopener noreferrer"
@@ -75,215 +85,112 @@ export default function ProteinDeepDivePage() {
               Hijacking a Bacterial ABC Transporter for Genetic Code Expansion
             </h1>
             <p className="text-lg text-slate-500 leading-relaxed mb-6">
-              A comprehensive walkthrough of the science behind programmable ncAA import and efficient protein production.
+              A comprehensive walkthrough of the science behind programmable non-canonical amino acid import
+              and efficient designer protein production — with interactive figures from the paper.
             </p>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-600">
-              <strong>Citation:</strong> Iype, T., Fottner, M., Böhm, P. et al. Hijacking a bacterial ABC transporter for genetic code expansion. 
-              <em> Nature</em> 647, 1045–1053 (2025). 
-              <a href="https://doi.org/10.1038/s41586-025-09576-w" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline ml-1">
+              <strong>Citation:</strong> Iype, T., Fottner, M., Böhm, P. et al. Hijacking a bacterial ABC transporter for genetic code expansion.{" "}
+              <em>Nature</em> 647, 1045–1053 (2025).{" "}
+              <a
+                href="https://doi.org/10.1038/s41586-025-09576-w"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-600 hover:underline"
+              >
                 doi.org/10.1038/s41586-025-09576-w
               </a>
             </div>
           </header>
 
           {/* Introduction */}
-          <section className="mb-16">
+          <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">The Core Discovery</h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              The researchers discovered that the <strong>oligopeptide permease (Opp)</strong>, a bacterial ABC transporter, 
-              can be co-opted to actively import non-canonical amino acids into E. coli cells when they are attached to 
-              a simple tripeptide scaffold.
+              The researchers discovered that the <strong>oligopeptide permease (Opp)</strong>, a bacterial ABC
+              transporter, can be co-opted to actively import non-canonical amino acids (ncAAs) into{" "}
+              <em>E. coli</em> cells when they are attached to a simple tripeptide scaffold (G-XisoK).
             </p>
             <p className="text-slate-600 leading-relaxed">
-              This "Trojan horse" approach overcomes a fundamental limitation of genetic code expansion: most ncAAs 
-              cannot efficiently cross the cell membrane, resulting in low intracellular concentrations and poor 
-              incorporation yields. By leveraging active transport, the system achieves 5-10x higher intracellular 
-              ncAA concentrations, enabling wild-type-like protein production yields.
+              This "Trojan horse" approach overcomes the fundamental limitation of genetic code expansion:
+              most ncAAs cannot efficiently cross the cell membrane. By leveraging active transport the system
+              achieves 5–10× higher intracellular ncAA concentrations, enabling wild-type-like protein yields.
             </p>
           </section>
 
-          {/* Figure 1 */}
-          <FigureSection number="1" title="G-XisoK Tripeptides Enable Efficient Uptake" defaultOpen={true}>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-slate-900 mb-3">What the figure shows:</h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">a</span>
-                    <span>Chemical structures of G-XisoK (tripeptide), XisoK (dipeptide), and BocK (gold standard ncAA)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">b</span>
-                    <span>SDS-PAGE showing dramatic difference: G-AisoK produces full-length protein, while AisoK alone yields almost nothing</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">c</span>
-                    <span>Mass spectrometry confirms site-specific AisoK incorporation</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">d</span>
-                    <span>Real-time fluorescence shows G-AisoK enables faster, stronger protein production than BocK</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">e</span>
-                    <span>Uptake assay: G-AisoK is rapidly processed inside cells, accumulating 5-10x more AisoK than direct supplementation</span>
-                  </li>
-                </ul>
+          {/* Figures */}
+          <FigureSection number="1" title="G-XisoK Tripeptides Enable Efficient Uptake" defaultOpen>
+            <div className="mb-6">
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                Adding a single glycine to the N-terminus of an ncAA transforms an impermeable building block
+                into one that is actively imported by the Opp transporter. The interactive charts below compare
+                real-time fluorescence from a reporter protein (sfGFP-N150TAG) when either G-AisoK (tripeptide)
+                or AisoK alone (dipeptide) is supplied to the cell, alongside a simulated SDS-PAGE gel showing
+                the presence or absence of full-length protein.
+              </p>
+            </div>
+            <Figure1Tripeptide />
+            <div className="mt-6 grid md:grid-cols-2 gap-4 text-sm text-slate-600">
+              <div className="p-4 bg-slate-50 rounded-xl">
+                <strong className="text-slate-800">Panel b (SDS-PAGE):</strong> G-AisoK produces a strong
+                full-length sfGFP band. AisoK alone produces only a faint truncated band — the amber stop
+                codon is not read through without sufficient intracellular ncAA.
               </div>
-              <div className="bg-slate-50 rounded-xl p-6">
-                <h4 className="font-semibold text-slate-900 mb-3">Key insight:</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Simply adding a glycine to the N-terminus of the ncAA (making it a tripeptide) transforms an 
-                  impermeable building block into one that is actively imported and accumulates at high concentrations 
-                  inside the cell. The N-terminal glycine is then cleaved off by endogenous peptidases.
-                </p>
+              <div className="p-4 bg-slate-50 rounded-xl">
+                <strong className="text-slate-800">Panel d/e (kinetics):</strong> G-AisoK drives fluorescence
+                to wild-type levels within hours. Uptake assays confirm 5–10× more intracellular AisoK
+                compared to direct dipeptide supplementation.
               </div>
             </div>
           </FigureSection>
 
-          {/* Figure 2 */}
           <FigureSection number="2" title="Identification of the Opp Transporter">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-slate-900 mb-3">What the figure shows:</h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">a</span>
-                    <span>Knockout screen: deleting any component of the Opp transporter (oppA, oppB, oppD) completely abolishes G-AisoK-dependent protein production</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">b</span>
-                    <span>AlphaFold2 structure of the Opp transporter showing its five components</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">c</span>
-                    <span>In ΔoppA cells, no intracellular AisoK is detected even when G-AisoK is supplied</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">d</span>
-                    <span>Double knockout (ΔpepN/pepA) identifies the peptidases responsible for cleaving the N-terminal glycine</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-6">
-                <h4 className="font-semibold text-slate-900 mb-3">Key insight:</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  The Opp (oligopeptide permease) is an ABC transporter that normally imports small peptides 
-                  for nutrition. The researchers discovered it also imports their G-XisoK tripeptides. 
-                  Once inside, two redundant peptidases (PepN and PepA) cleave off the glycine, releasing 
-                  the ncAA for incorporation.
-                </p>
-              </div>
+            <div className="mb-6">
+              <p className="text-sm text-slate-600 leading-relaxed">
+                A systematic gene knockout screen showed that deleting any single Opp subunit completely
+                abolishes G-XisoK-mediated protein production. An AlphaFold2 structure revealed the five-component
+                ABC transporter architecture, with OppA as the periplasmic binding protein that first captures
+                the G-XisoK tripeptide. Hover each subunit in the structure view to explore its role.
+              </p>
             </div>
+            <Figure2Transporter />
           </FigureSection>
 
-          {/* Figure 3 */}
           <FigureSection number="3" title="A Versatile G-XisoK Toolbox">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-slate-900 mb-3">What the figure shows:</h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">a</span>
-                    <span>Generalized G-XisoK structure: X can be any amino acid</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">b-c</span>
-                    <span>Crystal structure of OppA bound to G-SisoK reveals a large cavity that can accommodate bulky side chains</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">d</span>
-                    <span>Toolbox of functional groups enabled: propargyl (click chemistry), diazirine (photocrosslinker), chloroacetyl (covalent crosslinker), and many natural amino acid variants</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">e-i</span>
-                    <span>Demonstrations: bioorthogonal conjugation, photocrosslinking, chemical crosslinking of protein complexes, enzymatic conjugation</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-6">
-                <h4 className="font-semibold text-slate-900 mb-3">Key insight:</h4>
-                <p className="text-sm text-slate-600 leading-relaxed mb-3">
-                  The OppA binding pocket is promiscuous — it primarily recognizes the peptide backbone and 
-                  termini, leaving a large cavity for diverse side chains. This enables a whole toolbox of 
-                  11+ ncAAs with different functionalities.
-                </p>
-                <div className="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-                  <p className="text-xs text-emerald-700 font-medium">
-                    Enabled functionalities: bioorthogonal handles (click chemistry), photocrosslinkers (UV-activated), 
-                    chemical crosslinkers (proximity-based), post-translational modifications, enzymatic conjugation sites.
-                  </p>
-                </div>
-              </div>
+            <div className="mb-6">
+              <p className="text-sm text-slate-600 leading-relaxed">
+                The OppA binding pocket primarily recognises the peptide backbone and termini, leaving a
+                spacious cavity for diverse side chains. This was confirmed by solving the crystal structure
+                of OppA bound to G-SisoK (PDB: 9RD1). Use the category filter below to explore the 11+
+                ncAAs demonstrated, spanning post-translational modification mimics, bioorthogonal handles,
+                crosslinkers, and labelling handles.
+              </p>
             </div>
+            <Figure3Toolbox />
           </FigureSection>
 
-          {/* Figure 4 */}
-          <FigureSection number="4" title="Evolved Transporters for Optimal Import">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-slate-900 mb-3">What the figure shows:</h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">a</span>
-                    <span>Problem: in rich media, competing peptides reduce G-XisoK import efficiency</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">b</span>
-                    <span>Solution: directed evolution of OppA for preferential G-XisoK binding</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">c-d</span>
-                    <span>High-throughput FACS-based selection scheme to identify improved variants</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">e-g</span>
-                    <span>Evolved isoK12 strain achieves wild-type-like protein yields even in rich media</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-6">
-                <h4 className="font-semibold text-slate-900 mb-3">Key insight:</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Through directed evolution, the researchers created OppA variants that preferentially 
-                  bind G-XisoK tripeptides over the natural peptide substrates found in growth media. 
-                  Genomic integration of these evolved transporters creates customized E. coli strains 
-                  optimized for efficient ncAA import.
-                </p>
-              </div>
+          <FigureSection number="4" title="Evolved Transporters for Scalable Production">
+            <div className="mb-6">
+              <p className="text-sm text-slate-600 leading-relaxed">
+                In nutrient-rich (2-YT) media, competing peptides in tryptone reduce G-XisoK import
+                efficiency sevenfold. Through FACS-based directed evolution of OppA, the researchers
+                created <strong>OppA-iso</strong> — a variant with fourfold lower affinity for competitor
+                peptides while retaining high affinity for G-SisoK. Genomic integration of OppA-iso into
+                K12 creates the <strong>IsoK12</strong> production strain.
+              </p>
             </div>
+            <Figure4Evolution />
           </FigureSection>
 
-          {/* Figure 5 */}
-          <FigureSection number="5" title="Expanded Scaffolds for Diverse ncAAs">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold text-slate-900 mb-3">What the figure shows:</h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">a</span>
-                    <span>Extended scaffold Z-XisoK: the N-terminal amino acid can also be varied</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">b-c</span>
-                    <span>Evolution of OppA for bulky Z-groups (like N3A — azidoalanine)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center flex-shrink-0 mt-0.5">d-e</span>
-                    <span>Co-import of two different ncAAs via a single tripeptide for dual incorporation</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-slate-50 rounded-xl p-6">
-                <h4 className="font-semibold text-slate-900 mb-3">Key insight:</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  The platform is highly modular. Not only can the central X amino acid be varied, but 
-                  the N-terminal "Z" position can also be changed — including to other ncAAs. This enables 
-                  co-delivery and dual incorporation of two different non-canonical amino acids, opening 
-                  new possibilities for multi-site labeling and crosslinking.
-                </p>
-              </div>
+          <FigureSection number="5" title="Expanded Scaffolds and Dual ncAA Delivery">
+            <div className="mb-6">
+              <p className="text-sm text-slate-600 leading-relaxed">
+                The platform extends to Z-XisoK scaffolds where the N-terminal position (Z) can also be a
+                non-canonical amino acid, enabling co-delivery and dual incorporation of two different ncAAs
+                in a single tripeptide. The yield comparison demonstrates that IsoK12 achieves wild-type-level
+                purified protein across nine therapeutically relevant target proteins spanning 7–85 kDa.
+              </p>
             </div>
+            <Figure5Dual />
           </FigureSection>
 
           {/* Summary */}
@@ -291,19 +198,19 @@ export default function ProteinDeepDivePage() {
             <h2 className="text-xl font-bold text-slate-900 mb-4">Summary: Why This Matters</h2>
             <div className="space-y-4 text-slate-600">
               <p className="leading-relaxed">
-                <strong>For researchers:</strong> This technology dramatically expands the accessible chemical 
-                space for protein engineering. ncAAs that were previously impractical due to poor uptake are 
-                now readily incorporable at wild-type-like yields.
+                <strong>For researchers:</strong> ncAAs previously impractical due to poor uptake are now
+                incorporable at wild-type yields. The toolbox covers every major functional group used in
+                protein engineering — PTMs, click handles, crosslinkers, and labelling sites.
               </p>
               <p className="leading-relaxed">
-                <strong>For industry:</strong> The improved efficiency makes industrial-scale production of 
-                modified proteins economically viable. Less ncAA material is wasted, evolved strains are 
-                ready for use, and production costs are significantly reduced.
+                <strong>For industry:</strong> IsoK12 works in standard rich media, eliminates expensive
+                autoinduction media, requires 10× less ncAA material, and is genomically integrated — ready
+                for scale-up without plasmid maintenance.
               </p>
               <p className="leading-relaxed">
-                <strong>For therapeutics:</strong> Site-specific modification of proteins (for ADCs, PEGylation, 
-                labeling) can now be achieved at practical yields, enabling next-generation biologics with 
-                improved homogeneity and therapeutic indices.
+                <strong>For therapeutics:</strong> Site-specific modification of biologics (ADCs, PEGylation,
+                multi-site labelling) is now achievable at homogeneous, preparative yields — enabling
+                next-generation protein therapeutics with improved safety profiles.
               </p>
             </div>
           </section>
@@ -312,23 +219,49 @@ export default function ProteinDeepDivePage() {
           <section className="mt-16">
             <h2 className="text-xl font-bold text-slate-900 mb-6">Resources</h2>
             <div className="grid md:grid-cols-2 gap-4">
-              <a 
+              <a
                 href="https://doi.org/10.1038/s41586-025-09576-w"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors group"
               >
-                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">Full Publication</h4>
+                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Full Publication
+                </h4>
                 <p className="text-sm text-slate-500">Nature, November 2025</p>
               </a>
-              <a 
+              <a
+                href="https://ethz.ch/en/news-and-events/eth-news/news/2025/12/a-trojan-horse-for-artificial-amino-acids.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors group"
+              >
+                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  ETH Zurich News Article
+                </h4>
+                <p className="text-sm text-slate-500">December 2025</p>
+              </a>
+              <a
                 href="https://transfer.ethz.ch"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors group"
               >
-                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">ETH Transfer</h4>
-                <p className="text-sm text-slate-500">Licensing information</p>
+                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  ETH Transfer
+                </h4>
+                <p className="text-sm text-slate-500">Licensing information — Ref. 2024-108</p>
+              </a>
+              <a
+                href="https://lang.ethz.ch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/50 transition-colors group"
+              >
+                <h4 className="font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Lang Group, ETH Zurich
+                </h4>
+                <p className="text-sm text-slate-500">Principal investigator lab website</p>
               </a>
             </div>
           </section>
@@ -338,9 +271,7 @@ export default function ProteinDeepDivePage() {
       {/* Footer */}
       <footer className="py-8 bg-slate-50 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-sm text-slate-400">
-            Technology reference: 2024-108 | ETH Zurich
-          </p>
+          <p className="text-sm text-slate-400">Technology reference: 2024-108 | ETH Zurich</p>
         </div>
       </footer>
     </main>

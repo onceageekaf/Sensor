@@ -1,14 +1,14 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { ExternalLink, Mail, FileText, Award, Newspaper } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ExternalLink, Mail, ArrowRight, BookOpen, Newspaper, FileText } from "lucide-react"
 import Link from "next/link"
 
-function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,197 +20,203 @@ function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode;
   }, [])
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all duration-700",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-        className
-      )}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  )
-}
-
-const inventors = [
-  {
-    name: "Prof. Dr. Kathrin Lang",
-    role: "Principal Investigator",
-    institution: "ETH Zurich & TU Munich",
-    bio: "Professor of Organic Chemistry specializing in chemical biology, genetic code expansion, and protein engineering. Pioneer in developing new tools for studying and manipulating proteins.",
-    link: "https://lang.ethz.ch",
-  },
-  {
-    name: "Dr. Maximilian Fottner",
-    role: "Co-First Author",
-    institution: "ETH Zurich",
-    bio: "Postdoctoral researcher focusing on genetic code expansion and protein chemistry. Co-developed the tripeptide transport system.",
-    link: null,
-  },
-  {
-    name: "Tarun Iype",
-    role: "Co-First Author",
-    institution: "ETH Zurich",
-    bio: "PhD researcher in the Lang group. Co-developed the evolved transporter variants and E. coli strains.",
-    link: null,
-  },
-]
-
-const pressArticles = [
-  {
-    title: "A Trojan horse for artificial amino acids",
-    source: "ETH Zurich News",
-    date: "December 2025",
-    link: "https://ethz.ch/en/news-and-events/eth-news/news/2025/12/a-trojan-horse-for-artificial-amino-acids.html",
-  },
-]
-
-export function ContactSection() {
-  return (
-    <section id="contact" className="py-24 px-6 bg-emerald-50">
-      <div className="max-w-5xl mx-auto">
-        <FadeIn>
-          <p className="text-sm font-medium text-emerald-600 tracking-widest uppercase mb-4 text-center">Licensing</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight text-center mb-4">
-            Commercialize This Technology
-          </h2>
-          <p className="text-center text-slate-500 max-w-2xl mx-auto mb-12">
-            This technology is available for licensing through ETH Zurich Transfer. Contact us to discuss partnership opportunities.
-          </p>
-        </FadeIn>
-
-        {/* Status indicators */}
-        <FadeIn delay={100}>
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="p-6 rounded-xl bg-white border border-slate-200 text-center">
-              <div className="text-sm text-slate-500 mb-2">Technology Readiness</div>
-              <div className="flex items-center justify-center gap-1 mb-2">
-                {[1,2,3,4,5,6,7,8,9].map(level => (
-                  <div
-                    key={level}
-                    className={cn(
-                      "w-6 h-6 rounded-full text-xs flex items-center justify-center font-medium",
-                      level <= 5 ? "bg-emerald-500 text-white" : "bg-slate-200 text-slate-400"
-                    )}
-                  >
-                    {level}
-                  </div>
-                ))}
-              </div>
-              <div className="text-sm font-medium text-emerald-600">TRL 5 - Technology validated</div>
-            </div>
-            <div className="p-6 rounded-xl bg-white border border-slate-200 text-center">
-              <div className="text-sm text-slate-500 mb-2">IP Status</div>
-              <div className="text-2xl font-bold text-slate-900 mb-1">Patent Pending</div>
-              <div className="text-sm text-slate-500">International protection sought</div>
-            </div>
-            <div className="p-6 rounded-xl bg-white border border-slate-200 text-center">
-              <div className="text-sm text-slate-500 mb-2">Reference</div>
-              <div className="text-2xl font-bold text-slate-900 mb-1">2024-108</div>
-              <div className="text-sm text-slate-500">ETH Transfer</div>
-            </div>
-          </div>
-        </FadeIn>
-
+    <section id="contact" className="py-24 bg-white" ref={ref}>
+      <div className="max-w-5xl mx-auto px-6">
         {/* Inventors */}
-        <FadeIn delay={200}>
-          <h3 className="text-xl font-bold text-slate-900 mb-6">Inventors</h3>
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {inventors.map((inv) => (
-              <div key={inv.name} className="p-6 rounded-xl bg-white border border-slate-200">
-                <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
-                  <span className="text-emerald-700 font-bold text-lg">{inv.name.split(' ').map(n => n[0]).join('').slice(0,2)}</span>
+        <div className={cn(
+          "mb-16 transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        )}>
+          <h2 className="text-sm font-semibold text-emerald-600 uppercase tracking-wide mb-2 text-center">The Team</h2>
+          <h3 className="text-3xl md:text-4xl font-semibold text-slate-900 mb-12 text-center text-balance">
+            Meet the inventors
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                initials: "KL",
+                name: "Prof. Dr. Kathrin Lang",
+                role: "Principal Investigator",
+                dept: "ETH Zurich & TU Munich",
+                bio: "Professor of Organic Chemistry and Chemical Biology. Pioneer in genetic code expansion, protein engineering, and the development of chemical tools for studying cellular processes.",
+                awards: "ERC Consolidator Grant, Heinz Maier-Leibnitz Prize",
+                link: "https://lang.ethz.ch",
+              },
+              {
+                initials: "MF",
+                name: "Dr. Maximilian Fottner",
+                role: "Co-First Author",
+                dept: "ETH Zurich",
+                bio: "Postdoctoral researcher specializing in genetic code expansion and protein chemistry. Co-developed the tripeptide transport system and the OppA crystal structure.",
+                awards: null,
+                link: null,
+              },
+              {
+                initials: "TI",
+                name: "Tarun Iype",
+                role: "Co-First Author",
+                dept: "ETH Zurich",
+                bio: "PhD researcher in the Lang group. Led development of evolved OppA transporter variants and IsoK12 E. coli strains for scalable ncAA production.",
+                awards: null,
+                link: null,
+              },
+            ].map((inv, i) => (
+              <div
+                key={inv.name}
+                className={cn(
+                  "p-8 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition-all duration-700",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                )}
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shrink-0">
+                    <span className="text-emerald-700 text-lg font-bold">{inv.initials}</span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-slate-900">{inv.name}</h4>
+                    <p className="text-sm text-slate-500">{inv.role}</p>
+                    <p className="text-sm text-emerald-600">{inv.dept}</p>
+                  </div>
                 </div>
-                <h4 className="font-bold text-slate-900">{inv.name}</h4>
-                <p className="text-sm text-emerald-600 mb-1">{inv.role}</p>
-                <p className="text-xs text-slate-400 mb-3">{inv.institution}</p>
-                <p className="text-sm text-slate-600 leading-relaxed">{inv.bio}</p>
+                <p className="text-sm text-slate-600 leading-relaxed mb-4">{inv.bio}</p>
+                {inv.awards && (
+                  <div className="flex items-start gap-2 text-sm mb-4">
+                    <BookOpen className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span className="text-slate-700">{inv.awards}</span>
+                  </div>
+                )}
                 {inv.link && (
-                  <a 
-                    href={inv.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 mt-3 text-sm text-emerald-600 hover:text-emerald-700"
-                  >
-                    Lab website <ExternalLink className="w-3 h-3" />
-                  </a>
+                  <div className="pt-4 border-t border-slate-100">
+                    <a
+                      href={inv.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1"
+                    >
+                      Visit research group <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 )}
               </div>
             ))}
           </div>
-        </FadeIn>
 
-        {/* Press */}
-        <FadeIn delay={300}>
-          <h3 className="text-xl font-bold text-slate-900 mb-6">Publication & Press</h3>
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <a 
+          <div className="mt-6 text-center">
+            <p className="text-sm text-slate-400">
+              With contributions from Philipp Böhm, Stephanie Kötter, Nicole Tötsch, Andreas Brunner, and Kathrin Engel
+            </p>
+          </div>
+        </div>
+
+        {/* Press Coverage */}
+        <div className={cn(
+          "mb-16 transition-all duration-700 delay-100",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        )}>
+          <h3 className="text-lg font-semibold text-slate-900 mb-6 text-center">Press coverage</h3>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <a
+              href="https://ethz.ch/en/news-and-events/eth-news/news/2025/12/a-trojan-horse-for-artificial-amino-acids.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-5 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Newspaper className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
+                <span className="text-xs text-slate-400 font-medium uppercase tracking-wide">ETH Zurich</span>
+              </div>
+              <p className="text-sm font-medium text-slate-800 group-hover:text-emerald-900 transition-colors leading-snug">
+                {"\"A Trojan horse for artificial amino acids\""}
+              </p>
+              <p className="text-xs text-slate-400 mt-2">December 2025</p>
+            </a>
+            <a
               href="https://doi.org/10.1038/s41586-025-09576-w"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 rounded-xl bg-white border border-slate-200 hover:border-emerald-300 transition-colors group"
+              className="group p-5 rounded-xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <FileText className="w-5 h-5 text-emerald-600" />
-                <span className="text-xs text-slate-400">Original Publication</span>
+              <div className="flex items-center gap-2 mb-3">
+                <FileText className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
+                <span className="text-xs text-slate-400 font-medium uppercase tracking-wide">Nature</span>
               </div>
-              <h4 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors mb-2">
-                Hijacking a bacterial ABC transporter for genetic code expansion
-              </h4>
-              <p className="text-sm text-slate-500">Nature, Vol 647, November 2025</p>
+              <p className="text-sm font-medium text-slate-800 group-hover:text-emerald-900 transition-colors leading-snug">
+                {"\"Hijacking a bacterial ABC transporter for genetic code expansion\""}
+              </p>
+              <p className="text-xs text-slate-400 mt-2">Vol 647, November 2025</p>
             </a>
-            {pressArticles.map((article) => (
-              <a 
-                key={article.title}
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 rounded-xl bg-white border border-slate-200 hover:border-emerald-300 transition-colors group"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <Newspaper className="w-5 h-5 text-blue-600" />
-                  <span className="text-xs text-slate-400">{article.source}</span>
-                </div>
-                <h4 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors mb-2">
-                  {article.title}
-                </h4>
-                <p className="text-sm text-slate-500">{article.date}</p>
-              </a>
-            ))}
           </div>
-        </FadeIn>
+        </div>
 
-        {/* CTA */}
-        <FadeIn delay={400}>
-          <div className="p-8 rounded-2xl bg-white border border-slate-200 text-center">
-            <h3 className="text-xl font-bold text-slate-900 mb-3">Interested in licensing?</h3>
-            <p className="text-slate-500 mb-6 max-w-lg mx-auto">
-              Contact ETH Transfer to discuss licensing terms, collaboration opportunities, or technical due diligence.
+        {/* Dark CTA card — same pattern as oxygen sensor */}
+        <div className={cn(
+          "bg-slate-900 rounded-3xl p-8 md:p-12 transition-all duration-700 delay-200",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        )}>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-700 bg-slate-800 mb-6">
+              <span className="text-emerald-400 text-sm font-medium">Licensing Opportunity</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4 text-balance">
+              Interested in this technology?
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              This platform is available for licensing through ETH Transfer. It can be adapted
+              to any ncAA of interest and scales to industrial production volumes.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl">
-                <a href="mailto:transfer@sl.ethz.ch">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Contact ETH Transfer
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="border-slate-200 rounded-xl bg-transparent">
-                <a href="https://transfer.ethz.ch" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Visit ETH Transfer
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-xl bg-transparent">
-                <Link href="/protein-production/deep-dive">
-                  <FileText className="w-4 h-4 mr-2" />
-                  Technical deep dive
-                </Link>
-              </Button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            <div className="p-6 rounded-xl bg-slate-800 border border-slate-700">
+              <h3 className="text-lg font-semibold text-white mb-3">Technology Readiness</h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Demonstrated in laboratory conditions with validated E. coli strains, crystal
+                structures, and wild-type-level protein yields across multiple target proteins.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="flex flex-1">
+                  {[1,2,3,4,5].map((level) => (
+                    <div key={level} className={cn("flex-1 h-2 bg-emerald-500", level === 1 && "rounded-l")} />
+                  ))}
+                  {[6,7,8,9].map((level) => (
+                    <div key={level} className={cn("flex-1 h-2 bg-slate-700", level === 9 && "rounded-r")} />
+                  ))}
+                </div>
+                <span className="text-sm text-emerald-400 font-medium shrink-0">TRL 5</span>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl bg-slate-800 border border-slate-700">
+              <h3 className="text-lg font-semibold text-white mb-3">IP Status</h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Patent pending with international protection sought. Reference 2024-108.
+                Platform covers the G-XisoK scaffold, IsoK12 strain, and evolved OppA variants.
+              </p>
+              <div className="flex items-center gap-3 text-sm text-slate-500">
+                <span>Ref: 2024-108</span>
+                <span className="text-slate-700">|</span>
+                <span>Market: ~$300B biologics</span>
+              </div>
             </div>
           </div>
-        </FadeIn>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium h-12 rounded-xl" asChild>
+              <a href="mailto:transfer@sl.ethz.ch">
+                <Mail className="w-5 h-5 mr-2" />
+                Contact ETH Transfer
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 bg-transparent h-12 rounded-xl" asChild>
+              <Link href="/protein-production/deep-dive">
+                <ArrowRight className="w-5 h-5 mr-2" />
+                Read the technical deep dive
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   )
