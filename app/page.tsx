@@ -56,6 +56,30 @@ const technologies = [
     icon: RibosomeIcon,
     color: "emerald",
   },
+  {
+    id: "nanoparticle-qc",
+    href: "/nanoparticle-qc",
+    title: "In-line Quality Control of Engineered Nanoparticles",
+    subtitle: "Single-particle ICP-MS for comprehensive characterization of nanoparticle size, composition, and count in production",
+    institution: "EPFL",
+    published: "ACS Nano, 2022",
+    trl: 7,
+    tags: ["Nanotechnology", "Quality Control", "Analytical"],
+    icon: NanotubeIcon,
+    color: "violet",
+  },
+  {
+    id: "hydrogel-bone",
+    href: "/hydrogel-bone",
+    title: "Synthetic Hydrogel for Bone Tissue Engineering",
+    subtitle: "Biodegradable microporous PEG hydrogel for 3D bone cell networks with real-time collagen imaging on-chip",
+    institution: "ETH Zurich",
+    published: "Nature Communications, 2024",
+    trl: 6,
+    tags: ["Biotechnology", "Tissue Engineering", "Drug Discovery"],
+    icon: CellIcon,
+    color: "emerald",
+  },
 ]
 
 // Extract all unique tags for filtering
@@ -72,6 +96,10 @@ const tagIconsMap: Record<string, React.FC<{ className?: string; size?: number; 
   "Biotechnology": DNAIcon,
   "Protein Engineering": ProteinIcon,
   "Synthetic Biology": BacteriaIcon,
+  "Quality Control": SensorIcon,
+  "Analytical": MoleculeIcon,
+  "Tissue Engineering": CellIcon,
+  "Drug Discovery": EnzymeIcon,
 }
 
 // Color mapping for tags
@@ -85,30 +113,38 @@ const tagColors: Record<string, string> = {
   "Biotechnology": "bg-emerald-50 text-emerald-700 border-emerald-200",
   "Protein Engineering": "bg-cyan-50 text-cyan-700 border-cyan-200",
   "Synthetic Biology": "bg-indigo-50 text-indigo-700 border-indigo-200",
+  "Quality Control": "bg-purple-50 text-purple-700 border-purple-200",
+  "Analytical": "bg-blue-50 text-blue-700 border-blue-200",
+  "Tissue Engineering": "bg-pink-50 text-pink-700 border-pink-200",
+  "Drug Discovery": "bg-orange-50 text-orange-700 border-orange-200",
 }
 
 const cardColors: Record<string, string> = {
   teal: "border-teal-100 hover:border-teal-300",
   violet: "border-violet-100 hover:border-violet-300",
   emerald: "border-emerald-100 hover:border-emerald-300",
+  blue: "border-blue-100 hover:border-blue-300",
 }
 
 const iconBgColors: Record<string, string> = {
   teal: "bg-teal-50",
   violet: "bg-violet-50",
   emerald: "bg-emerald-50",
+  blue: "bg-blue-50",
 }
 
 const iconColors: Record<string, string> = {
   teal: "#0d9488",
   violet: "#7c3aed",
   emerald: "#059669",
+  blue: "#2563eb",
 }
 
 const accentColors: Record<string, string> = {
   teal: "text-teal-600",
   violet: "text-violet-600",
   emerald: "text-emerald-600",
+  blue: "text-blue-600",
 }
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
