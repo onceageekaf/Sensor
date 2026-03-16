@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink, FileText } from "lucide-react"
+import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -194,6 +195,31 @@ export default function AtheroscleroticPlaqueModelPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="3D Engineered Atherosclerotic Plaque Model"
+        publication={{
+          title: "Biofabricating atherosclerotic plaques: In vitro engineering of a three-dimensional human fibroatheroma model",
+          journal: "Biomaterials, 2018",
+          year: "ETH Zurich / University of Zurich",
+        }}
+        innovationDetails="A three-dimensional tissue-engineered human atherosclerotic plaque model (fibroatheroma) created through biofabrication techniques. This model closely mimics the structure and cellular composition of real atherosclerotic lesions found in coronary arteries, enabling improved understanding of plaque pathophysiology and testing of therapeutic interventions."
+        methodology={[
+          "Selection and isolation of relevant human cell types from atherosclerotic lesions",
+          "3D tissue engineering scaffold design with appropriate biomechanical properties",
+          "Co-culture of smooth muscle cells, macrophages, and endothelial cells",
+          "Lipid accumulation and extracellular matrix formation in controlled conditions",
+        ]}
+        keyFindings={[
+          "Successfully created 3D model with fibroatheroma architecture",
+          "Model maintains cellular viability and phenotypic characteristics",
+          "Demonstrated lipid accumulation mimicking pathological progression",
+          "Suitable platform for testing anti-atherosclerotic drugs and interventions",
+        ]}
+        patentStatus="Patent pending"
+        trlLevel={5}
+      />
 
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">

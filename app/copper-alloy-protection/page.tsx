@@ -6,6 +6,7 @@ import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { Footer } from "@/components/footer"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -199,6 +200,31 @@ export default function CopperAlloyPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="Protective Patina for Copper Alloys"
+        publication={{
+          title: "Field-proven method to cover copper surfaces with a protective and durable patina",
+          journal: "Technology Transfer Opportunity",
+          year: "University of Neuchâtel",
+        }}
+        innovationDetails="A fungal strain induces formation of a stable and protective patina on the surface of copper and bronze objects. The biological patina actively stabilizes existing corrosion by converting the outer layer of the copper surface into a durable, insoluble patina that prevents further destructive corrosion. This eco-friendly alternative replaces organic coatings (waxes and resins) and toxic corrosion inhibitors."
+        methodology={[
+          "Selection of fungal strain with copper patina-inducing properties",
+          "Application of strain to copper or bronze surface",
+          "Induction of stable patina formation through fungal activity",
+          "Prevention of further corrosion through insoluble compounds",
+        ]}
+        keyFindings={[
+          "Successfully applied on cultural heritage artefacts and sculptures",
+          "Prevents further corrosive destruction of treated surfaces",
+          "Preserves partially corroded artefacts",
+          "Eliminates chromatic differences on cupreous object surfaces",
+        ]}
+        patentStatus="Patent pending"
+        trlLevel={5}
+      />
 
       {/* Contact */}
       <section id="contact" className="py-24 bg-white">

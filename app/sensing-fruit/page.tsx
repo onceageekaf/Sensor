@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -194,6 +195,31 @@ export default function SensingFruitPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="Biomimetic Artificial Fruit for Cold Chain Monitoring"
+        publication={{
+          title: "Artificial fruit with integrated sensors for accurate temperature monitoring matching real produce thermal behavior",
+          journal: "Technology Transfer Opportunity",
+          year: "Empa",
+        }}
+        innovationDetails="A biomimetic artificial fruit with integrated temperature sensors that precisely matches the thermal behavior and characteristics of real produce. This technology enables accurate monitoring of temperature conditions throughout cold chain transport and storage by replicating how real fruits respond thermally to environmental conditions, providing data traceability and quality assurance."
+        methodology={[
+          "Characterization of thermal properties of real produce",
+          "Design and manufacturing of biomimetic artificial fruit body",
+          "Integration of precise temperature sensors within structure",
+          "Validation against real fruit thermal response profiles",
+        ]}
+        keyFindings={[
+          "Successfully matches thermal behavior of real produce",
+          "Provides accurate temperature monitoring throughout cold chain",
+          "Enables data traceability for food quality assurance",
+          "Withstands realistic transport and storage conditions",
+        ]}
+        patentStatus="Patent pending"
+        trlLevel={5}
+      />
 
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">

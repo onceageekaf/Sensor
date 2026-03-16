@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -195,6 +196,31 @@ export default function MRITissueExtractionPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="LIBRE Pulse for Fat-Free MRI"
+        publication={{
+          title: "LIBRE pulse sequence for robust fat suppression in MRI",
+          journal: "Technology Transfer Opportunity",
+          year: "Lausanne University Hospital (CHUV)",
+        }}
+        innovationDetails="LIBRE (Lipid Insensitive Binomial off-Resonant Excitation) is an innovative RF excitation pulse that specifically excites water protons while efficiently suppressing lipid signals in MRI. The technique provides broad suppression bandwidth for enhanced efficiency, significantly reducing bright fat signals while maintaining low specific absorption rate (SAR). It offers near-complete fat suppression even in large 3D volumes and radial acquisitions, particularly benefiting high field strength applications."
+        methodology={[
+          "Design of specialized binomial RF excitation pulse sequence",
+          "Optimization for water-selective excitation with lipid suppression",
+          "Validation in cardiac, abdominal, and cartilage imaging",
+          "Clinical testing on 33+ cardiac patients at CHUV",
+        ]}
+        keyFindings={[
+          "Achieved near-complete fat signal suppression across 3D volumes",
+          "Robust performance despite magnetic field inhomogeneities",
+          "Clinically validated on 33 cardiac patients at CHUV",
+          "Successfully applied to cartilage T2 mapping and MR angiography",
+        ]}
+        patentStatus="Patent pending, EP 16165763.0 and US 15/487,542"
+        trlLevel={7}
+      />
 
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -198,6 +199,31 @@ export default function AMProcessControlPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="Real-Time Additive Manufacturing Process Control via Acoustic Emission"
+        publication={{
+          title: "AI-driven acoustic emission sensing for real-time detection and correction of additive manufacturing defects",
+          journal: "Technology Transfer Opportunity",
+          year: "Empa",
+        }}
+        innovationDetails="Fiber optic acoustic emission (AE) sensors detect unique sound signatures produced during sintering or melting in additive manufacturing. Each signature encodes information about heat distribution and particle interactions. An AI system classifies these signatures in real-time to assess quality and enable both defect detection and adaptive process parameter optimization, allowing immediate corrective action before waste is produced."
+        methodology={[
+          "Embedded fiber optic acoustic emission sensors in AM machine",
+          "Real-time acoustic signature capture during sintering/melting",
+          "Machine learning classification of acoustic signatures for defect patterns",
+          "Feedback control loop for automated parameter optimization",
+        ]}
+        keyFindings={[
+          "Successfully detected internal porosity and manufacturing defects",
+          "Real-time feedback enables immediate process correction",
+          "Hardware/software add-on compatible with existing AM machines",
+          "Automated parameter adaptation reduces material waste",
+        ]}
+        patentStatus="Patent pending, Ref. 2015-124"
+        trlLevel={5}
+      />
 
       {/* Contact */}
       <section id="contact" className="py-24 bg-white">

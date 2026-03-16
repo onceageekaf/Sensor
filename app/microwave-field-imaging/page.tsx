@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -195,6 +196,31 @@ export default function MicrowaveFieldImagingPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="Single-Shot 2D Imaging and Reconstruction of Microwave Magnetic Field Components"
+        publication={{
+          title: "Cold atom based microwave field imaging using intrinsic calibration for microwave circuit characterization",
+          journal: "Technology Transfer Opportunity",
+          year: "University of Basel",
+        }}
+        innovationDetails="Single-shot 2D imaging and reconstruction of microwave magnetic field components using cold atoms technique with intrinsic calibration. This method provides direct visualization of microwave fields around integrated circuits without requiring external calibration, enabling precise characterization for development of integrated microwave circuits and components."
+        methodology={[
+          "Preparation of cold atom ensembles for field sensing",
+          "Single-shot imaging of magnetic field distributions",
+          "Reconstruction of field components in 2D",
+          "Intrinsic calibration using atomic properties",
+        ]}
+        keyFindings={[
+          "Successfully imaged microwave field distribution around coplanar waveguides",
+          "Results validated against electromagnetic field simulations",
+          "Intrinsic calibration improves measurement accuracy",
+          "Single-shot capability enables real-time field visualization",
+        ]}
+        patentStatus="Patent pending"
+        trlLevel={4}
+      />
 
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -194,6 +195,31 @@ export default function SignalReconstructionPage() {
           </div>
         </div>
       </section>
+
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="Machine Learning-Based Learnable Compressive Sampling and Reconstruction"
+        publication={{
+          title: "Learnable Compressive Sampling and Reconstruction with joint optimization of sampling operator and decoder",
+          journal: "EUSIPCO 2018",
+          year: "University of Geneva",
+        }}
+        innovationDetails="Joint optimization of the sampling operator and decoder in a machine learning framework enables reconstruction of multi-dimensional signals from sparse samples with orders of magnitude data reduction. The method learns priors from external databases or on-the-fly, providing a universal solution for imaging with significantly reduced data streaming and maintained reconstruction quality."
+        methodology={[
+          "Design of learnable sampling operator as differentiable neural network layer",
+          "Joint training of sampling and reconstruction decoder end-to-end",
+          "Integration with deep learning priors from external databases or on-the-fly learning",
+          "Optimization for multi-dimensional signals (1D, 2D, and higher)",
+        ]}
+        keyFindings={[
+          "Achieved 10-100× data reduction across imaging applications",
+          "Superior reconstruction quality compared to compressed sensing approaches",
+          "Successfully applied to hyperspectral imaging, MRI, and astronomical data",
+          "Universal framework adaptable to different imaging modalities",
+        ]}
+        patentStatus="Patent application pending, EP18181858.6"
+        trlLevel={4}
+      />
 
       <section id="contact" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">

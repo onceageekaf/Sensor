@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, Check, X, AlertTriangle, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
+import { DeepDiveSection } from "@/components/deep-dive-section"
 
 function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -195,8 +196,32 @@ export default function HighPermittivitySiliconePage() {
         </div>
       </section>
 
+      {/* Deep Dive */}
+      <DeepDiveSection
+        title="High Permittivity Silicone for Dielectric Elastomer Actuators"
+        publication={{
+          title: "A simple, low cost, eco-friendly, fast, and easily up-scalable synthesis process for high permittivity silicone-based polymers and elastomers",
+          journal: "Technology Transfer Opportunity",
+          year: "Empa",
+        }}
+        innovationDetails="A novel synthesis process for silicone elastomers with permittivity greater than 10 enables dielectric elastomer actuators (DEAs) to operate at significantly lower driving voltages. The method is straightforward, leads to homogenous materials unlike blending approaches, uses readily available and cheap starting materials, and is simple and scalable. Demonstrated 10% lateral strain at 8.5 V/μm."
+        methodology={[
+          "Selection of starting materials with high permittivity and mechanical compatibility",
+          "Chemical synthesis of silicone elastomers with tunable composition",
+          "Mechanical property optimization through molecular design",
+          "Validation of dielectric properties and actuation performance",
+        ]}
+        keyFindings={[
+          "Achieved permittivity > 10, exceeding standard PDMS (~3)",
+          "Maintained excellent mechanical properties throughout material composition range",
+          "Demonstrated 10% lateral strain at 8.5 V/μm",
+          "Significantly reduced driving voltage requirements compared to standard silicones",
+        ]}
+        patentStatus="Patent pending, Ref. 2013-254"
+        trlLevel={4}
+      />
+
       <section id="contact" className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
           <FadeIn>
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               <div className="p-8 rounded-2xl border border-slate-200 bg-white">
