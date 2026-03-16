@@ -19,15 +19,17 @@ export function DNAIcon({ className, size = 24, color = "currentColor", animated
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes dnaRotate {
-            0%, 100% { transform: rotateY(0deg); }
-            50% { transform: rotateY(180deg); }
-          }
-          .dna-strand { animation: dnaRotate 3s ease-in-out infinite; transform-origin: center; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes dnaRotate {
+              0%, 100% { transform: rotateY(0deg); }
+              50% { transform: rotateY(180deg); }
+            }
+            .dna-strand { animation: dnaRotate 3s ease-in-out infinite; transform-origin: center; }
+          `}
+        </style>
+      )}
       <g className={animated ? "dna-strand" : ""}>
         {/* Left strand */}
         <path 
@@ -64,15 +66,17 @@ export function CellIcon({ className, size = 24, color = "currentColor", animate
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes cellPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-          }
-          .cell-membrane { animation: cellPulse 2s ease-in-out infinite; transform-origin: center; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes cellPulse {
+              0%, 100% { transform: scale(1); }
+              50% { transform: scale(1.05); }
+            }
+            .cell-membrane { animation: cellPulse 2s ease-in-out infinite; transform-origin: center; }
+          `}
+        </style>
+      )}
       {/* Cell membrane - irregular shape */}
       <path 
         className={animated ? "cell-membrane" : ""}
@@ -105,15 +109,17 @@ export function AntibodyIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes antibodyWiggle {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
-          }
-          .antibody-body { animation: antibodyWiggle 1.5s ease-in-out infinite; transform-origin: center bottom; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes antibodyWiggle {
+              0%, 100% { transform: rotate(-2deg); }
+              50% { transform: rotate(2deg); }
+            }
+            .antibody-body { animation: antibodyWiggle 1.5s ease-in-out infinite; transform-origin: center bottom; }
+          `}
+        </style>
+      )}
       <g className={animated ? "antibody-body" : ""}>
         {/* Y shape body */}
         <path 
@@ -143,16 +149,18 @@ export function MoleculeIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes moleculeVibrate {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(0.5px, -0.5px); }
-            75% { transform: translate(-0.5px, 0.5px); }
-          }
-          .molecule-atom { animation: moleculeVibrate 0.3s ease-in-out infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes moleculeVibrate {
+              0%, 100% { transform: translate(0, 0); }
+              25% { transform: translate(0.5px, -0.5px); }
+              75% { transform: translate(-0.5px, 0.5px); }
+            }
+            .molecule-atom { animation: moleculeVibrate 0.3s ease-in-out infinite; }
+          `}
+        </style>
+      )}
       {/* Central atom */}
       <circle className={animated ? "molecule-atom" : ""} cx="12" cy="12" r="3" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1.5" />
       {/* Bonds */}
@@ -183,14 +191,16 @@ export function ProteinIcon({ className, size = 24, color = "currentColor", anim
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes proteinFold {
-            0%, 100% { d: path("M4 12C4 8 6 4 10 4C14 4 14 10 12 12C10 14 10 20 14 20C18 20 20 16 20 12"); }
-            50% { d: path("M4 12C4 9 7 5 10 5C13 5 13 11 12 12C11 13 11 19 14 19C17 19 20 15 20 12"); }
-          }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes proteinFold {
+              0%, 100% { d: path("M4 12C4 8 6 4 10 4C14 4 14 10 12 12C10 14 10 20 14 20C18 20 20 16 20 12"); }
+              50% { d: path("M4 12C4 9 7 5 10 5C13 5 13 11 12 12C11 13 11 19 14 19C17 19 20 15 20 12"); }
+            }
+          `}
+        </style>
+      )}
       {/* Alpha helix representation */}
       <path 
         d="M4 12C4 8 6 4 10 4C14 4 14 10 12 12C10 14 10 20 14 20C18 20 20 16 20 12" 
@@ -217,15 +227,17 @@ export function NanotubeIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes electronFlow {
-            0% { stroke-dashoffset: 20; }
-            100% { stroke-dashoffset: 0; }
-          }
-          .electron-flow { stroke-dasharray: 4 2; animation: electronFlow 1s linear infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes electronFlow {
+              0% { stroke-dashoffset: 20; }
+              100% { stroke-dashoffset: 0; }
+            }
+            .electron-flow { stroke-dasharray: 4 2; animation: electronFlow 1s linear infinite; }
+          `}
+        </style>
+      )}
       {/* Tube body */}
       <rect x="4" y="6" width="16" height="12" rx="6" stroke={color} strokeWidth="1.5" fill={color} fillOpacity="0.1" />
       {/* Hexagonal pattern */}
@@ -254,15 +266,17 @@ export function ReceptorIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes receptorBind {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-          }
-          .receptor-binding { animation: receptorBind 1.5s ease-in-out infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes receptorBind {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-2px); }
+            }
+            .receptor-binding { animation: receptorBind 1.5s ease-in-out infinite; }
+          `}
+        </style>
+      )}
       {/* Membrane */}
       <rect x="2" y="10" width="20" height="4" fill={color} fillOpacity="0.2" rx="2" />
       {/* Transmembrane domain */}
@@ -295,15 +309,17 @@ export function VirusIcon({ className, size = 24, color = "currentColor", animat
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes virusSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-          .virus-spikes { animation: virusSpin 10s linear infinite; transform-origin: center; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes virusSpin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            .virus-spikes { animation: virusSpin 10s linear infinite; transform-origin: center; }
+          `}
+        </style>
+      )}
       {/* Capsid */}
       <circle cx="12" cy="12" r="6" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1.5" />
       {/* Spike proteins */}
@@ -341,15 +357,17 @@ export function EnzymeIcon({ className, size = 24, color = "currentColor", anima
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes enzymeCatalyze {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-          }
-          .enzyme-substrate { animation: enzymeCatalyze 1s ease-in-out infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes enzymeCatalyze {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.5; }
+            }
+            .enzyme-substrate { animation: enzymeCatalyze 1s ease-in-out infinite; }
+          `}
+        </style>
+      )}
       {/* Enzyme body - irregular blob */}
       <path 
         d="M5 12C5 7 8 4 12 4C16 4 19 7 19 12C19 17 16 20 12 20C8 20 5 17 5 12Z" 
@@ -395,15 +413,17 @@ export function SensorIcon({ className, size = 24, color = "currentColor", anima
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes sensorPulse {
-            0%, 100% { r: 3; opacity: 1; }
-            50% { r: 5; opacity: 0.5; }
-          }
-          .sensor-signal { animation: sensorPulse 1.5s ease-in-out infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes sensorPulse {
+              0%, 100% { r: 3; opacity: 1; }
+              50% { r: 5; opacity: 0.5; }
+            }
+            .sensor-signal { animation: sensorPulse 1.5s ease-in-out infinite; }
+          `}
+        </style>
+      )}
       {/* Sensor chip base */}
       <rect x="4" y="14" width="16" height="6" rx="1" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1.5" />
       {/* Electrodes */}
@@ -431,15 +451,17 @@ export function BacteriaIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes bacteriaWiggle {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
-          }
-          .bacteria-body { animation: bacteriaWiggle 0.5s ease-in-out infinite; transform-origin: center; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes bacteriaWiggle {
+              0%, 100% { transform: rotate(-3deg); }
+              50% { transform: rotate(3deg); }
+            }
+            .bacteria-body { animation: bacteriaWiggle 0.5s ease-in-out infinite; transform-origin: center; }
+          `}
+        </style>
+      )}
       <g className={animated ? "bacteria-body" : ""}>
         {/* Cell body - rod shaped */}
         <rect x="5" y="8" width="14" height="8" rx="4" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1.5" />
@@ -468,15 +490,17 @@ export function RibosomeIcon({ className, size = 24, color = "currentColor", ani
       className={className}
       fill="none"
     >
-      <style>
-        {animated && `
-          @keyframes ribosomeTranslate {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(2px); }
-          }
-          .ribosome-body { animation: ribosomeTranslate 1s ease-in-out infinite; }
-        `}
-      </style>
+      {animated && (
+        <style>
+          {`
+            @keyframes ribosomeTranslate {
+              0%, 100% { transform: translateX(0); }
+              50% { transform: translateX(2px); }
+            }
+            .ribosome-body { animation: ribosomeTranslate 1s ease-in-out infinite; }
+          `}
+        </style>
+      )}
       <g className={animated ? "ribosome-body" : ""}>
         {/* Large subunit */}
         <ellipse cx="12" cy="14" rx="7" ry="5" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1.5" />
