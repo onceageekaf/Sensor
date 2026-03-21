@@ -32,16 +32,26 @@ export function HeroSection() {
           <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
           <span className="text-slate-600 text-sm font-medium">ETH Zurich Innovation</span>
         </div>
-        
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-slate-900 mb-6 leading-tight tracking-tight text-balance">
-          Oxygen sensing,
-          <br />
-          <span className="text-teal-600">reimagined.</span>
+
+        <h1 className="text-6xl md:text-7xl lg:text-8xl font-semibold text-slate-900 mb-4 leading-tight tracking-tight">
+          So<sub className="text-5xl md:text-6xl lg:text-7xl font-semibold">2</sub>LAR
         </h1>
-        
-        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
-          A breakthrough light-activated sensor that detects oxygen at parts-per-billion 
-          levels. Faster, more selective, and energy-efficient than anything before it.
+
+        <p className="text-xl md:text-2xl font-medium text-teal-600 mb-6 tracking-wide">
+          Light-activated O<sub className="text-lg">2</sub> sensor
+        </p>
+
+        <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-4 leading-relaxed text-pretty">
+          A breakthrough sensor that works like a solar cell — except instead of converting
+          sunlight into electricity, it converts light into an oxygen-sensing signal. Shine
+          a light, detect O<sub>2</sub> down to parts-per-billion. No heat, no high voltage,
+          no warm-up time.
+        </p>
+
+        <p className="text-base text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+          Just as a solar panel harvests photons to drive electrons, So<sub>2</sub>LAR
+          harvests visible light to drive a precisely calibrated electrical response
+          that tells you exactly how much oxygen is present.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
